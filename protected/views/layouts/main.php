@@ -32,7 +32,7 @@
 		<div id="searchfield">
 			<form action="/repo/search" method="post" class="searchform">
 				<input type="text" value="<?=Yii::app()->getRequest()->getParam('repository')?Yii::app()->getRequest()->getParam('repository'):'Search'?>" name="repository"></input>
-				<input type="button">
+				<input type="button" alt ="Find" onClick='$(".searchform").submit();'>
 			</form>
 		</div>	
 	</div><!-- header -->

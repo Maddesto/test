@@ -52,7 +52,7 @@ class UserLikesController extends Controller
 		if(Yii::app()->request->isPostRequest){
 			$user_id = Yii::app()->request->getPost('id');
 			$repo_id = Yii::app()->request->getPost('repo');
-			$ip = CHttpRequest::getUserHostAddress();
+			$ip = Yii::app()->request->getUserHostAddress();
 			$like = UserLikes::model()->findByAttributes(array('ip'=>$ip, 'user_id'=>$user_id, 'repo_id'=>$repo_id));
 			if(!$like){
 				$logobj = new UserLikes();
@@ -76,7 +76,7 @@ class UserLikesController extends Controller
 		if(Yii::app()->request->isPostRequest){
 			$id = Yii::app()->request->getPost('id');
 			$repo_id = Yii::app()->request->getPost('repo');
-			$like = UserLikes::model()->findByAttributes(array('ip'=>CHttpRequest::getUserHostAddress(), 'user_id'=>$id, 'repo_id' =>$repo_id));
+			$like = UserLikes::model()->findByAttributes(array('ip'=>Yii::app()->request->getUserHostAddress(), 'user_id'=>$id, 'repo_id' =>$repo_id));
 			if($like->delete()){
 				$result = true;
 			}

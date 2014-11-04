@@ -50,7 +50,7 @@ class ContributorController extends Controller
 	{	
 		try{
 			$user = User::createRepositoryData($login);
-			$user_like = UserLikes::model()->findByAttributes(array('ip'=>CHttpRequest::getUserHostAddress(), 'user_id'=>$user['id'], 'repo_id' =>$repo_id));
+			$user_like = UserLikes::model()->findByAttributes(array('ip'=>Yii::app()->request->getUserHostAddress(), 'user_id'=>$user['id'], 'repo_id' =>$repo_id));
 		}catch(Exception $e){
 			
 		}

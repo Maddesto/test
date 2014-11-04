@@ -52,7 +52,7 @@ class RepoController extends Controller
 		try{	
 			$repository_info = Repository::getRepositoryData($login, $repo);
 			$contributors = Repository::getRepositoryContributors($login, $repo);
-			$likes = UserLikes::model()->findAllByAttributes(array('ip'=>CHttpRequest::getUserHostAddress(), 'repo_id' =>$repository_info['id']));
+			$likes = UserLikes::model()->findAllByAttributes(array('ip'=>Yii::app()->request->getUserHostAddress(), 'repo_id' =>$repository_info['id']));
 		}catch(Exception $e){
 			
 		}
@@ -75,7 +75,7 @@ class RepoController extends Controller
 			if($repository){
 				$repoInfo = Repository::findRepositories($repository, $params);
 			}
-			$likes = RepoLikes::model()->findAllByAttributes(array('ip'=>CHttpRequest::getUserHostAddress(), 'repo_id' =>Repository::selectRepositoriesIds($repoInfo['items'])));
+			$likes = RepoLikes::model()->findAllByAttributes(array('ip'=>Yii::app()->request->getUserHostAddress(), 'repo_id' =>Repository::selectRepositoriesIds($repoInfo['items'])));
 		}catch(Exception $e){
 			
 		}

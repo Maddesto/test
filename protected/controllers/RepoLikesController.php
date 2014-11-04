@@ -81,7 +81,7 @@ class RepoLikesController extends Controller
 		$result = false;
 		if(Yii::app()->request->isPostRequest){
 			$repo_id = Yii::app()->request->getPost('id');
-			$ip = CHttpRequest::getUserHostAddress();
+			$ip = Yii::app()->request->getUserHostAddress();
 			$like = RepoLikes::model()->findByAttributes(array('ip'=>$ip, 'repo_id'=>$repo_id));
 			if(!$like){
 				$logobj = new RepoLikes();
@@ -103,7 +103,7 @@ class RepoLikesController extends Controller
 		$result = false;
 		if(Yii::app()->request->isPostRequest){
 			$repo_id = Yii::app()->request->getPost('id');
-			$like = RepoLikes::model()->findByAttributes(array('ip'=>CHttpRequest::getUserHostAddress(), 'repo_id'=>$repo_id));
+			$like = RepoLikes::model()->findByAttributes(array('ip'=>Yii::app()->request->getUserHostAddress(), 'repo_id'=>$repo_id));
 			if($like->delete()){
 				$result = true;
 			}
